@@ -1,4 +1,5 @@
 require('dotenv').config();
+import {connectMongoDB} from "./lib/db/index";
 
 const { API_PORT } = process.env;
 
@@ -21,7 +22,8 @@ const serverInfo = `
 /**
  * Start server
  */
-const server = app.listen(app.get('port'), () => {
+const server = app.listen(app.get('port'), async () => {
+    await connectMongoDB();
     console.log(serverInfo);
 });
 
