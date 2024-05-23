@@ -4,6 +4,12 @@ import session from 'express-session';
 
 import userRouter from './lib/routes/user_routes';
 import unprotectedRouter from './lib/routes/unprotected_routes';
+import catalogRouter from './lib/routes/catalog_routes';
+import elementRouter from './lib/routes/elements_routes';
+import instrumentRouter from './lib/routes/instruments_routes';
+import alarmRouter from './lib/routes/alarms_routes';
+import conservationActionRouter from './lib/routes/conservation_actions_routes';
+import woundRouter from './lib/routes/wound_routes'
 
 /**
  * Import environmental variables
@@ -35,5 +41,11 @@ app.use(
 
 app.use(unprotectedRouter);
 app.use('/users', userRouter);
+app.use('/catalog', catalogRouter); //Monitoring variables, Materials
+app.use('/elements', elementRouter); //structural, decorative
+app.use('/instruments', instrumentRouter); //Datalogger, others.
+app.use('/alarm', alarmRouter); //alarm historial
+app.use('/conservationAccion', conservationActionRouter); //Conservation actions associated to elements, material and rank
+app.use('/wound', woundRouter);
 
 export default app;

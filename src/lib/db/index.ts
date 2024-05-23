@@ -1,20 +1,33 @@
-import mongoose from "mongoose";
+import { createPool, Pool } from 'mysql2/promise';
+import { PoolOptions } from 'mysql2';
 
-const { MONGODB_URL } = process.env;
+/**
+ * Connection pool set up
+ */
+const poolConnectionOptions: PoolOptions = {
+    host: process.env.REMOTE_DB_HOST,
+    port: process.env.REMOTE_DB_PORT as unknown as number,
+    user: process.env.REMOTE_DB_USER,
+    database: process.env.REMOTE_DB_DATABASE,
+    password: process.env.REMOTE_DB_PASSWORD,
+    waitForConnections: true,
+    enableKeepAlive: true,
+    multipleStatements: true,
+    connectionLimit: 20,
+    connectTimeout: 60000,
+    namedPlaceholders: true,
+};
 
-const connectMongoDB = async () => {
-        try{
-           await mongoose.connect(MONGODB_URL, {
-               // useCreateIndex: true,
-               autoIndex: true
-           });
-            console.log('MongoDB connection established');
-        }catch(err){
-            console.error(err);
-        }
-        
+/**
+ * Create database connection pool
+ */
+let pool: Pool;
+
+try {
+    pool = createPool(poolConnectionOptions);
+    console.log('A new MySQL pool has been created successfully.');
+} catch (err) {
+    console.error(err);
 }
 
-export {
-    connectMongoDB
-}
+export default pool;
