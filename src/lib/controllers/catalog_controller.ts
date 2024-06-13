@@ -1,3 +1,30 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import express from 'express';
 import { FieldPacket, ResultSetHeader } from 'mysql2';
 import { _retrieveBlockList, _retrieveCardinalPointList, _retrieveElementTypeList, _retrieveInstrumentTypeList, _retrieveMaterialList, _retrieveMonitoringFrecuencyList, _retrieveMonitoringVariableList, _retrieveOrientationList, _retrieveTechnicalUnitList } from '../queries/catalog_queries';

@@ -1,4 +1,4 @@
-import { addElement, deleteElement, editElement, retrieveElementList, retrieveElementsOnWatchList } from "../controllers/elements_controller";
+import { addElement, deleteElement, editElement, retrieveElementList } from "../controllers/elements_controller";
 
 const router = require('express').Router();
 
@@ -10,7 +10,7 @@ const router = require('express').Router();
 
 
 router.get('/', retrieveElementList)
-router.get('/elements-on-watch', retrieveElementsOnWatchList)
+// router.get('/elements-on-watch', retrieveElementsOnWatchList)
 
 /*
  ******************************************************
