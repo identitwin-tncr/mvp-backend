@@ -1,6 +1,8 @@
 import {FieldPacket, QueryResult, ResultSetHeader, RowDataPacket} from 'mysql2';
+
 import pool from '../db';
 import {ElementBody} from "types";
+
 
 const _retrieveElementList = async (offset: number, limit: number, blockId: number, technologicalUnitId: number): Promise<[RowDataPacket[], FieldPacket[]]> => {
     const query: string = "CALL TNCR.RETRIEVE_ELEMENTS(?, ?, ?, ?);";

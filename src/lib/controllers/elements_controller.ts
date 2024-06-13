@@ -9,7 +9,6 @@ import {
 } from '../queries/elements_queries';
 import {ElementBody, ElementDatabase} from "types";
 import {formatElement, formatError, formatPagination} from "../../util/formatter_util";
-import * as http from "http";
 
 const retrieveElementList = async (req: express.Request, res: express.Response) => {
     const offset: number = req.query.offset ? parseInt(req.query.offset as string) : DEFAULT_OFFSET;

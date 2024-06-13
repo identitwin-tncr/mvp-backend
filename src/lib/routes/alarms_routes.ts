@@ -9,7 +9,7 @@ const router = require('express').Router();
  */
 
 router.get('/', retrieveAlarmList)
-router.get('/:id', retrieveAlarmActionList) //check a specific alarm actions
+router.get('/actions', retrieveAlarmActionList) //check a specific alarm actions
 
 /*
  ******************************************************

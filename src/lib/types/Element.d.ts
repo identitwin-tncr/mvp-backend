@@ -1,41 +1,44 @@
-import {Catalog} from "./Catalog";
+import {Block, CardinalPoint, Catalog, ElementType, Orientation} from "./catalog"
+import exp from "node:constants";
+
+export type ElementBody = {
+    code: string;
+    number?: string;
+    orientationId?: number;
+    cardinalPointId?: number;
+    elementTypeId: number;
+    blockIds: number[];
+}
 
 export type ElementDatabase = {
     ID: number;
     CODE: string;
     NUMBER: number;
-    ORIENTATION: string;
     ORIENTATION_ID: number;
-    CARDINAL_POINT: string;
+    ORIENTATION: string;
     CARDINAL_POINT_ID: number;
-    ELEMENT_TYPE: string;
+    CARDINAL_POINT: string;
     ELEMENT_TYPE_ID: number;
-    TECHNOLOGICAL_UNIT: string;
+    ELEMENT_TYPE: string;
     TECHNOLOGICAL_UNIT_ID: number;
-    BLOCK: string;
+    TECHNOLOGICAL_UNIT: string;
     BLOCK_ID: number;
+    BLOCK: string;
     BLOCK_CODE: string;
 }
+
+
 
 export type Element = {
     id: number;
     code: string;
-    number: number;
+    number?: number;
     orientation: Catalog;
     cardinalPoint: Catalog;
     elementType: {
         id: number;
         value: string;
-        technologicalUnit: Catalog
-    }
-    block: Catalog | [Catalog]
-}
-
-export type ElementBody = {
-    code: string;
-    number: number;
-    orientationId: number;
-    cardinalPointId: number;
-    elementTypeId: number;
-    blockIds: number[]
+        technologicalUnit: Catalog;
+    },
+    block: Catalog;
 }
