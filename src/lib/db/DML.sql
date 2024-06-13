@@ -1,3 +1,5 @@
+USE TNCR;
+
 INSERT INTO MONITORING_FREQUENCY(FREQUENCY, SCHEDULE)
     VALUES ('Cada hora', '0 0 * * * *'),
            ('Cada 2 horas', '0 0 */2 * * *'),
@@ -255,3 +257,24 @@ INSERT INTO BLOCK_ELEMENT(ELEMENT_ID, BLOCK_ID) VALUES ('1', '2'),
 ('95', '2'),
 ('96', '2'),
 ('97', '2');
+
+INSERT INTO VARIABLE(NAME, CODE, UNIT)
+VALUES 
+("Humedad","1","%"),
+("Temperatura","2","°C"),
+("Iluminación Incidente","3","Lux/Luxes"),
+("Dióxido de carbono","4","CO2");
+
+INSERT INTO MATERIAL(NAME, CODE)
+VALUES
+("Barro","1"),
+("Estuco","2"),
+("Yeso","3"),
+("Oro","4"),
+("Madera","5"),
+("Acero","6");
+
+INSERT INTO INSTRUMENT_TYPE(TYPE)
+VALUES
+("Estático"),
+("Móvil");
