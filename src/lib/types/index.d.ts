@@ -1,4 +1,4 @@
 
-export * from "./Element";
-export * from "./Catalog";
+export * from "./element";
+export * from "./catalog";
 

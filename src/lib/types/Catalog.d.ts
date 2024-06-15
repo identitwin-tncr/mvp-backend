@@ -1,8 +1,30 @@
 export type MonitoringVariable = 
 {
     id?: number,
-    name: string,
-    code: string
+    value: string,
+    code: string,
+    unit: string
+}
+
+export type MonitoringVariableDatabase =
+{
+    ID: number,
+    NAME: string,
+    CODE: string,
+    UNIT: string
+}
+
+export type Catalog =
+{
+    id?: number,
+    value: string,
+    code?: string
+}
+export type CatalogDatabase =
+{
+    ID: number,
+    NAME: string,
+    CODE: string,
 }
 
 export type Material =
@@ -12,12 +34,27 @@ export type Material =
     code: string
 }
 
+export type MaterialDatabase =
+{
+    ID: number,
+    NAME: string,
+    CODE: string,
+}
+
 export type Block =
 {
     id?: number,
-    name: string,
+    value: string,
     code: string,
     floor: number
+}
+
+export type BlockDatabase =
+{
+    ID: number,
+    NAME: string,
+    CODE: string,
+    FLOOR: number
 }
 
 export type TecnicalUnit =
@@ -44,9 +81,18 @@ export type CardinalPoint =
 export type ElementType =
 {
     id?: number,
-    name: string,
+    value: string,
     code: string,
-    TechnicalUnit: TecnicalUnit
+    technicalUnitId: TecnicalUnit
+}
+
+
+export type ElementTypeDatabase =
+{
+    ID: number,
+    NAME: string,
+    CODE: string,
+    TECHNICAL_UNIT_ID: TecnicalUnit
 }
 
 export type InstrumentType =
@@ -59,10 +105,4 @@ export type MonitoringFrecuency =
 {
     id?: number,
     frecuency: string
-}
-
-export type Catalog  = {
-    id: number;
-    value: string;
-    code?: string;
 }

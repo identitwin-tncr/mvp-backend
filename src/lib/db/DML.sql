@@ -1,3 +1,5 @@
+USE TNCR;
+
 INSERT INTO MONITORING_FREQUENCY(FREQUENCY, SCHEDULE)
     VALUES ('Cada hora', '0 0 * * * *'),
            ('Cada 2 horas', '0 0 */2 * * *'),
@@ -263,6 +265,7 @@ INSERT INTO BLOCK_ELEMENT(ELEMENT_ID, BLOCK_ID) VALUES ('1', '2'),
 ('96', '2'),
 ('97', '2');
 
+<<<<<<< HEAD
 INSERT INTO MATERIAL(ID, NAME, CODE) VALUES
 (1, 'Oro', 'Ma_Or'),
 (2, 'Plata', 'Ma_Plat'),
@@ -463,3 +466,25 @@ VALUES (1, 'Datalogger Ambiental Foyer Norte', '2BA_Bs_DaA', 'PLDA-05AD-A', 'TNC
     (4, 'Datalogger de Iluminación Primer Piso', '1BA_Bs_DaI', 'PLDA-05AD-D', 'TNCR-4', 1, 2, 1);
 
 INSERT INTO INSTRUMENT_VARIABLE(VARIABLE_ID, INSTRUMENT_ID) VALUES (1, 1), (3, 1), (2, 2), (1, 3),(3, 3), (2, 4);
+=======
+INSERT INTO VARIABLE(NAME, CODE, UNIT)
+VALUES 
+("Humedad","1","%"),
+("Temperatura","2","°C"),
+("Iluminación Incidente","3","Lux/Luxes"),
+("Dióxido de carbono","4","CO2");
+
+INSERT INTO MATERIAL(NAME, CODE)
+VALUES
+("Barro","1"),
+("Estuco","2"),
+("Yeso","3"),
+("Oro","4"),
+("Madera","5"),
+("Acero","6");
+
+INSERT INTO INSTRUMENT_TYPE(TYPE)
+VALUES
+("Estático"),
+("Móvil");
+>>>>>>> e488c9f32bc2f0feed8eb39be26f6c5a8c6778d1
