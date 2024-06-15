@@ -11,8 +11,8 @@ import {ElementBody, ElementDatabase} from "types";
 import {formatElement, formatError, formatPagination} from "../../util/formatter_util";
 
 const retrieveElementList = async (req: express.Request, res: express.Response) => {
-    const offset: number = parseInt(req.query.offset as string);
-    const limit: number = parseInt(req.query.limit as string);
+    const offset: number = req.query.offset? parseInt(req.query.offset as string) : DEFAULT_OFFSET;
+    const limit: number = req.query.limit? parseInt(req.query.limit as string) : DEFAULT_LIMIT;
     const blockId: number = req.query.blockId ? parseInt(req.query.blockId as string): null;
     const technologicalUnitId: number = req.query.technologicalUnitId ? parseInt(req.query.technologicalUnitId as string): null;
 
