@@ -45,8 +45,8 @@ export type Block =
 {
     id?: number,
     value: string,
-    code: string,
-    floor: number
+    code?: string,
+    floor?: number
 }
 
 export type BlockDatabase =
@@ -97,12 +97,12 @@ export type ElementTypeDatabase =
 
 export type InstrumentType =
 {
-    id?: number,
-    type: string
+    id: number,
+    value: string
 }
 
 export type MonitoringFrecuency =
 {
-    id?: number,
-    frecuency: string
+    id: number,
+    value: string
 }

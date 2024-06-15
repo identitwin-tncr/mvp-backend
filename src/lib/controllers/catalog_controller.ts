@@ -1,30 +1,3 @@
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import express from 'express';
 import { FieldPacket, ResultSetHeader } from 'mysql2';
 import {
@@ -174,32 +147,128 @@ const retrieveMonitoringFrecuencyList = async (req: express.Request, res: expres
 }
 
 const addMonitoringVariable = async (req: express.Request, res: express.Response) => {
-    let data: MonitoringVariable = req.body;
-    let dbResult = _addMonitoringVariable(data);
+    let data = req.body as MonitoringVariable;
+    _addMonitoringVariable(data)
+        .then(result => {
+            if(result[0].affectedRows >= 1){
+                res.sendStatus(StatusCodes.CREATED);
+            }else{
+                res.status(StatusCodes.BAD_REQUEST).send(formatError("El código o nombre de la variable proveída ya ha sido registrado en el sistema"))
+            }
+        })
+        .catch(err => {
+            console.error(err)
+            switch (err.errno) {
+                case 1062:
+                    res.status(StatusCodes.BAD_REQUEST).send(formatError("El código o nombre de la variable proveída ya ha sido registrado en el sistema"))
+                    break;
+                default:
+                    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(formatError("No fue posible crear la variable"))
+            }
+        })
 }
 const addMaterial = async (req: express.Request, res: express.Response) => {
     let data: Material = req.body;
-    let dbResult = _addMaterial(data);
+    _addMaterial(data)
+        .then(result => {
+            if(result[0].affectedRows >= 1){
+                res.sendStatus(StatusCodes.CREATED);
+            }else{
+                res.status(StatusCodes.BAD_REQUEST).send(formatError("El código o nombre del material proveído ya ha sido registrado en el sistema"))
+            }
+        })
+        .catch(err => {
+            console.error(err)
+            switch (err.errno) {
+                case 1062:
+                    res.status(StatusCodes.BAD_REQUEST).send(formatError("El código o nombre del material proveído ya ha sido registrado en el sistema"))
+                    break;
+                default:
+                    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(formatError("No fue posible crear el material"))
+            }
+        })
 }
 
 const editMonitoringVariable = async (req: express.Request, res: express.Response) => {
     const id: number = parseInt(req.params.id as string);
     let data: MonitoringVariable = req.body;
-    let dbResult = _editMonitoringVariable(id, data);
+    _editMonitoringVariable(id, data)
+        .then(result => {
+            if(result[0].affectedRows >= 1){
+                res.sendStatus(StatusCodes.OK);
+            }else{
+                res.status(StatusCodes.NOT_FOUND).send(formatError("La variable de monitoreo a editar no fue encontrada en el sistema"))
+            }
+        })
+        .catch(err => {
+            console.error(err)
+            switch (err.errno) {
+                case 1062:
+                    res.status(StatusCodes.BAD_REQUEST).send(formatError("El código o nombre de la variable proveída ya está registrado en el sistema"))
+                    break;
+                default:
+                    res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(formatError("No fue posible editar la variable"))
+            }
+        })
 }
 const editMaterial = async (req: express.Request, res: express.Response) => {
     const id: number = parseInt(req.params.id as string);
     let data: Material = req.body;
-    let dbResult = _editMaterial(id, data);
+    _editMaterial(id, data)
+    .then(result => {
+        if(result[0].affectedRows >= 1){
+            res.sendStatus(StatusCodes.OK);
+        }else{
+            res.status(StatusCodes.NOT_FOUND).send(formatError("El material a editar no fue encontrado en el sistema"))
+        }
+    })
+    .catch(err => {
+        console.error(err)
+        switch (err.errno) {
+            case 1062:
+                res.status(StatusCodes.BAD_REQUEST).send(formatError("El código o nombre del material proveído ya está registrado en el sistema"))
+                break;
+            default:
+                res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(formatError("No fue posible editar el material"))
+        }
+    })
 }
 
 const deleteMonitoringVariable = async (req: express.Request, res: express.Response) => {
     const id: number = parseInt(req.params.id as string);
-    let dbResult = _deleteMonitoringVariable(id);
+    _deleteMonitoringVariable(id)
+    .then(result => {
+        if(result[0].affectedRows >= 1){
+            res.sendStatus(StatusCodes.OK);
+        }else{
+            res.status(StatusCodes.NOT_FOUND).send(formatError("La variable a eliminar no fue encontrada en el sistema"))
+        }
+    })
+    .catch(err => {
+        console.error(err)
+        switch (err.errno) {
+            default:
+                res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(formatError("No fue posible eliminar la variable"))
+        }
+    })
 }
 const deleteMaterial = async (req: express.Request, res: express.Response) => {
     const id: number = parseInt(req.params.id as string);
-    let dbResult = _deleteMaterial(id);
+    _deleteMaterial(id)
+    .then(result => {
+        if(result[0].affectedRows >= 1){
+            res.sendStatus(StatusCodes.OK);
+        }else{
+            res.status(StatusCodes.NOT_FOUND).send(formatError("El material a eliminar no fue encontrado en el sistema"))
+        }
+    })
+    .catch(err => {
+        console.error(err)
+        switch (err.errno) {
+            default:
+                res.status(StatusCodes.INTERNAL_SERVER_ERROR).send(formatError("No fue posible eliminar el material"))
+        }
+    })
 }
 
 export {

@@ -40,14 +40,41 @@ const _retrieveMonitoringFrecuencyList = async (offset: number, limit: number): 
     return pool.query(query, [limit, offset])
 }
 
-const _addMonitoringVariable = async (data: MonitoringVariable): Promise<[ResultSetHeader, FieldPacket[]]> => {return}
-const _addMaterial = async (data: Material): Promise<[ResultSetHeader, FieldPacket[]]> => {return}
+const _addMonitoringVariable = async (data: MonitoringVariable): Promise<[ResultSetHeader, FieldPacket[]]> => {
+    const query: string = "INSERT INTO VARIABLE(NAME,CODE,UNIT) VALUES(?,?,?);";
+    return pool.query(query, [data.value, data.code, data.unit])
+}
+const _addMaterial = async (data: Material): Promise<[ResultSetHeader, FieldPacket[]]> => {
+    const query: string = "INSERT INTO MATERIAL(NAME,CODE) VALUES(?,?);";
+    return pool.query(query, [data.name, data.code])
+}
 
-const _editMonitoringVariable = async (id: number, data: MonitoringVariable): Promise<[ResultSetHeader, FieldPacket[]]> => {return}
-const _editMaterial = async (id: number, data: Material): Promise<[ResultSetHeader, FieldPacket[]]> => {return}
+const _editMonitoringVariable = async (id: number, data: MonitoringVariable): Promise<[ResultSetHeader, FieldPacket[]]> => {
+    const query = `UPDATE VARIABLE
+                SET 
+                NAME = ?,
+                CODE = ?,
+                UNIT = ?
+                WHERE ID = ?;`
+    return pool.query(query, [data.value, data.code, data.unit, id])
+}
+const _editMaterial = async (id: number, data: Material): Promise<[ResultSetHeader, FieldPacket[]]> => {
+    const query = `UPDATE MATERIAL
+                SET 
+                NAME = ?,
+                CODE = ?
+                WHERE ID = ?;`
+    return pool.query(query, [data.name, data.code, id])
+}
 
-const _deleteMonitoringVariable = async (id: number): Promise<[ResultSetHeader, FieldPacket[]]> => {return}
-const _deleteMaterial = async (id: number): Promise<[ResultSetHeader, FieldPacket[]]> => {return}
+const _deleteMonitoringVariable = async (id: number): Promise<[ResultSetHeader, FieldPacket[]]> => {
+    const query: string = "DELETE FROM VARIABLE WHERE ID = ?;";
+    return pool.query(query, [id])
+}
+const _deleteMaterial = async (id: number): Promise<[ResultSetHeader, FieldPacket[]]> => {
+    const query: string = "DELETE FROM MATERIAL WHERE ID = ?;";
+    return pool.query(query, [id])
+}
 
 export {
     _retrieveMonitoringVariableList,
