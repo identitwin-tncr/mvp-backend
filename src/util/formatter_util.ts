@@ -1,5 +1,4 @@
 import {ElementDatabase, Element} from "types";
-import {DEFAULT_LIMIT} from "./common_utils";
 
 
 const formatElement = (element: ElementDatabase) : Element => {

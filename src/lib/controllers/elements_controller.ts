@@ -11,12 +11,12 @@ import {ElementBody, ElementDatabase} from "types";
 import {formatElement, formatError, formatPagination} from "../../util/formatter_util";
 
 const retrieveElementList = async (req: express.Request, res: express.Response) => {
-    const offset: number = req.query.offset ? parseInt(req.query.offset as string) : DEFAULT_OFFSET;
-    const limit: number = req.query.limit ? parseInt(req.query.limit as string) : DEFAULT_LIMIT;
+    const offset: number = parseInt(req.query.offset as string);
+    const limit: number = parseInt(req.query.limit as string);
     const blockId: number = req.query.blockId ? parseInt(req.query.blockId as string): null;
     const technologicalUnitId: number = req.query.technologicalUnitId ? parseInt(req.query.technologicalUnitId as string): null;
 
-    // Added one to the limit to check if theres enough data for another page
+    // Added one to the limit to check if there's enough data for another page
     _retrieveElementList(offset, limit + 1, blockId, technologicalUnitId)
         .then(result => {
             const elements = result[0][0] as ElementDatabase[];

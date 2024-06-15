@@ -40,5 +40,6 @@ export type Element = {
         value: string;
         technologicalUnit: Catalog;
     },
-    block: Catalog;
+    block: Catalog | Catalog[]
+    alarms?: any[];
 }
