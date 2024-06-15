@@ -2,7 +2,6 @@ import express from 'express';
 // import { User } from 'types';
 import { ValidationError, validationResult } from 'express-validator';
 import { formatError } from '../../util/formatter_util';
-import user_routes from '../routes/user_routes';
 
 // const checkAdminPrivileges = (req: express.Request, res: express.Response, next: express.NextFunction) => {
 //     const loggedUser: User = req.user as User;
