@@ -265,7 +265,6 @@ INSERT INTO BLOCK_ELEMENT(ELEMENT_ID, BLOCK_ID) VALUES ('1', '2'),
 ('96', '2'),
 ('97', '2');
 
-<<<<<<< HEAD
 INSERT INTO MATERIAL(ID, NAME, CODE) VALUES
 (1, 'Oro', 'Ma_Or'),
 (2, 'Plata', 'Ma_Plat'),
@@ -411,7 +410,7 @@ INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (96, 1, ''
 INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (97, 4, '');
 INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (97, 8, '');
 
-INSERT INTO VARIABLE(ID, NAME, CODE, UNIT) VALUES (1, 'Temperatura', 'Var_Te', 'C°'),
+INSERT INTO TNCR.VARIABLE(ID, NAME, CODE, UNIT) VALUES (1, 'Temperatura', 'Var_Te', 'C°'),
 (2, 'Luz', 'Var_Lu', 'Luxes'),
 (3, 'Particulas de CO2', 'Var_C02', 'µg/m3');
 
@@ -466,37 +465,8 @@ VALUES (1, 'Datalogger Ambiental Foyer Norte', '2BA_Bs_DaA', 'PLDA-05AD-A', 'TNC
     (4, 'Datalogger de Iluminación Primer Piso', '1BA_Bs_DaI', 'PLDA-05AD-D', 'TNCR-4', 1, 2, 1);
 
 INSERT INTO INSTRUMENT_VARIABLE(VARIABLE_ID, INSTRUMENT_ID) VALUES (1, 1), (3, 1), (2, 2), (1, 3),(3, 3), (2, 4);
-=======
-INSERT INTO VARIABLE(NAME, CODE, UNIT)
-VALUES 
-("Humedad","1","%"),
-("Temperatura","2","°C"),
-("Iluminación Incidente","3","Lux/Luxes"),
-("Dióxido de carbono","4","CO2");
-
-INSERT INTO MATERIAL(NAME, CODE)
-VALUES
-("Barro","1"),
-("Estuco","2"),
-("Yeso","3"),
-("Oro","4"),
-("Madera","5"),
-("Acero","6");
 
 INSERT INTO INSTRUMENT_TYPE(TYPE)
 VALUES
 ("Estático"),
 ("Móvil");
-
-INSERT INTO INSTRUMENT(NAME, CODE, MODEL, ASSET_CODE, MONITORING_FREQUENCY_ID, BLOCK_ID, INSTRUMENT_TYPE_ID)
-VALUES
-("Datalogger Iluminación","2BABsDaI","Testo 160 THL","1",1,1,1),
-("Datalogger Ambiental","2BABsDaA","Testo 160 IAQ","2",1,1,1);
-
-INSERT INTO INSTRUMENT_VARIABLE(VARIABLE_ID, INSTRUMENT_ID)
-VALUES
-(3,1),
-(1,2),
-(2,2),
-(4,2);
->>>>>>> e488c9f32bc2f0feed8eb39be26f6c5a8c6778d1
