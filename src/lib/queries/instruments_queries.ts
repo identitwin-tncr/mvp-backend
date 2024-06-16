@@ -1,6 +1,6 @@
 import { FieldPacket, ResultSetHeader, RowDataPacket } from 'mysql2';
 import pool from '../db';
-import { Instrument } from '../types/instrument';
+import { Instrument } from 'types';
 
 const _retrieveInstrumentList = async (offset: number, limit: number): Promise<[RowDataPacket[], FieldPacket[]]> => {return}
 

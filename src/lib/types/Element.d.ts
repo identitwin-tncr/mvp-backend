@@ -1,5 +1,4 @@
-import {Block, CardinalPoint, Catalog, ElementType, Orientation} from "./catalog"
-import exp from "node:constants";
+import {Catalog, ElementType, Orientation} from "./Catalog"
 
 export type ElementBody = {
     code: string;
@@ -42,4 +41,20 @@ export type Element = {
     },
     block: Catalog | Catalog[]
     alarms?: any[];
+}
+
+export type ElementAlarm = {
+    id: number;
+    code: string;
+    number?: number;
+    orientation: Catalog;
+    cardinalPoint: Catalog;
+    elementType: {
+        id?: number;
+        value: string;
+        technologicalUnit: Catalog;
+    },
+    block?: Catalog | Catalog[]
+    alarms?: any[];
+    wounds?: WoundElement[]
 }

@@ -1,8 +1,7 @@
 import express from 'express';
-import { FieldPacket, ResultSetHeader } from 'mysql2';
 import { DEFAULT_LIMIT, DEFAULT_OFFSET } from '../../util/common_utils';
 import { _retrieveAlarmActionList, _retrieveAlarmList} from '../queries/alarms_queries';
-import { AlarmItem } from '../types/alarm';
+import {AlarmItem} from "types";
 
 const retrieveAlarmList = async (req: express.Request, res: express.Response) => {
     const offset: number = req.query.offset ? parseInt(req.query.offset as string) : DEFAULT_OFFSET;

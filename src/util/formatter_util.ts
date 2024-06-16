@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-import {ElementDatabase, Element} from "types";
-=======
 import {ElementDatabase, Element, MonitoringVariableDatabase, MonitoringVariable, Catalog, CatalogDatabase, BlockDatabase, Block, ElementTypeDatabase, ElementType} from "types";
-import {DEFAULT_LIMIT} from "./common_utils";
->>>>>>> e488c9f32bc2f0feed8eb39be26f6c5a8c6778d1
 
 
 const formatElement = (element: ElementDatabase) : Element => {

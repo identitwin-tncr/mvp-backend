@@ -1,12 +1,11 @@
 import express from 'express';
-import { FieldPacket, ResultSetHeader } from 'mysql2';
 import { DEFAULT_LIMIT, DEFAULT_OFFSET } from '../../util/common_utils';
 import { 
     _addWound, 
     _deleteWound, 
     _editWound, 
     _retrieveWoundList } from '../queries/wounds_queries';
-import { Wound } from '../types/wound';
+import { Wound } from 'types';
 
 const retrieveWoundList = async (req: express.Request, res: express.Response) => {
     const offset: number = req.query.offset ? parseInt(req.query.offset as string) : DEFAULT_OFFSET;

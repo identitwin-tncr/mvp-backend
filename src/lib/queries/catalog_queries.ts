@@ -1,6 +1,6 @@
 import { FieldPacket, ResultSetHeader, RowDataPacket } from 'mysql2';
 import pool from '../db';
-import { Material, MonitoringVariable } from '../types/catalog';
+import { Material, MonitoringVariable } from 'types';
 
 const _retrieveMonitoringVariableList = async (offset: number, limit: number): Promise<[RowDataPacket[], FieldPacket[]]> => {
     const query: string = "SELECT * FROM VARIABLE LIMIT ? OFFSET ?";

@@ -1,4 +1,4 @@
-import { Block, MonitoringFrecuency } from "./catalog"
+import { Block, MonitoringFrecuency } from "./Catalog"
 
 export type Instrument =
 {

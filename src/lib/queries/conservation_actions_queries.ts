@@ -1,6 +1,6 @@
 import { FieldPacket, ResultSetHeader, RowDataPacket } from 'mysql2';
 import pool from '../db';
-import { ConservationAction } from '../types/conservation_action';
+import { ConservationAction } from 'types';
 
 const _retrieveConservationActionList = async (offset: number, limit: number): Promise<[RowDataPacket[], FieldPacket[]]> => {return}
 

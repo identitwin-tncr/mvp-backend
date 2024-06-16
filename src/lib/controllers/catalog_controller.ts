@@ -1,32 +1,6 @@
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 import express from 'express';
-import { FieldPacket, ResultSetHeader } from 'mysql2';
 import {
     _addMaterial, 
     _addMonitoringVariable, 
@@ -44,7 +18,7 @@ import {
     _retrieveOrientationList, 
     _retrieveTechnicalUnitList } from '../queries/catalog_queries';
 import { DEFAULT_LIMIT, DEFAULT_OFFSET } from '../../util/common_utils';
-import { Block, BlockDatabase, CardinalPoint, CatalogDatabase, ElementType, ElementTypeDatabase, InstrumentType, Material, MaterialDatabase, MonitoringVariable, MonitoringVariableDatabase, Orientation, TecnicalUnit } from '../types/catalog';
+import { Block, BlockDatabase, CatalogDatabase, ElementTypeDatabase, Material, MonitoringVariable, MonitoringVariableDatabase} from 'types';
 import { StatusCodes } from 'http-status-codes';
 import { formatBlock, formatCatalog, formatElementType, formatError, formatPagination, formatVariable } from '../../util/formatter_util';
 

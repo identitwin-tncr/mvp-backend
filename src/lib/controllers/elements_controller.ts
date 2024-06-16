@@ -1,7 +1,6 @@
 import express from 'express';
 import {StatusCodes} from 'http-status-codes'
 
-import { DEFAULT_LIMIT, DEFAULT_OFFSET } from '../../util/common_utils';
 import {
     _addElement, _deleteElement,
     _editElement,

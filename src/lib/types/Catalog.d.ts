@@ -2,7 +2,7 @@ export type MonitoringVariable =
 {
     id?: number,
     value: string,
-    code: string,
+    code?: string,
     unit: string
 }
 

@@ -1,12 +1,11 @@
 import express from 'express';
-import { FieldPacket, ResultSetHeader } from 'mysql2';
 import { DEFAULT_LIMIT, DEFAULT_OFFSET } from '../../util/common_utils';
 import { 
     _addInstrument, 
     _deleteInstrument, 
     _editInstrument, 
     _retrieveInstrumentList } from '../queries/instruments_queries';
-import { Instrument } from '../types/instrument';
+import { Instrument } from 'types';
 
 const retrieveInstrumentList = async (req: express.Request, res: express.Response) => {
     const offset: number = req.query.offset ? parseInt(req.query.offset as string) : DEFAULT_OFFSET;

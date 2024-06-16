@@ -1,6 +1,6 @@
 import { FieldPacket, ResultSetHeader, RowDataPacket } from 'mysql2';
 import pool from '../db';
-import { Wound } from '../types/wound';
+import { Wound } from 'types';
 
 const _retrieveWoundList = async (offset: number, limit: number): Promise<[RowDataPacket[], FieldPacket[]]> => {return}
 

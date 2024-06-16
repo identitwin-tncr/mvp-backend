@@ -1,11 +1,11 @@
 USE TNCR;
 
-INSERT INTO MONITORING_FREQUENCY(FREQUENCY, SCHEDULE)
-    VALUES ('Cada hora', '0 0 * * * *'),
-           ('Cada 2 horas', '0 0 */2 * * *'),
-           ('Cada 6 horas', '0 0 */6 * * *'),
-           ('Cada 12 horas', '0 0 */12 * * *'),
-           ('Cada día', '0 0 12 * * *');
+# INSERT INTO MONITORING_FREQUENCY(FREQUENCY, SCHEDULE)
+#     VALUES ('Cada hora', '0 0 * * * *'),
+#            ('Cada 2 horas', '0 0 */2 * * *'),
+#            ('Cada 6 horas', '0 0 */6 * * *'),
+#            ('Cada 12 horas', '0 0 */12 * * *'),
+#            ('Cada día', '0 0 12 * * *');
 
 INSERT INTO MONITORING_FREQUENCY(FREQUENCY, SCHEDULE)
     VALUES ('Cada hora', '0 * * * * *'),
@@ -265,7 +265,6 @@ INSERT INTO BLOCK_ELEMENT(ELEMENT_ID, BLOCK_ID) VALUES ('1', '2'),
 ('96', '2'),
 ('97', '2');
 
-<<<<<<< HEAD
 INSERT INTO MATERIAL(ID, NAME, CODE) VALUES
 (1, 'Oro', 'Ma_Or'),
 (2, 'Plata', 'Ma_Plat'),
@@ -413,12 +412,13 @@ INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (97, 8, ''
 
 INSERT INTO VARIABLE(ID, NAME, CODE, UNIT) VALUES (1, 'Temperatura', 'Var_Te', 'C°'),
 (2, 'Luz', 'Var_Lu', 'Luxes'),
-(3, 'Particulas de CO2', 'Var_C02', 'µg/m3');
+(3, 'Particulas de CO2', 'Var_C02', 'µg/m3'),
+(4, 'Humedad', 'Var_Hu', '%');
 
 INSERT INTO MATERIAL_RANGE(MATERIAL_ID, VARIABLE_ID, MIN_RANGE, MAX_RANGE) VALUES
 (1, 1, 0.0, 50.0),        -- Oro, Temperatura
-(1, 2, 0.0, 10000.0),     -- Oro, Luz
-(1, 3, 300.0, 700.0),     -- Oro, Particulas de CO2
+(1, 2, 0.0, 925.0),     -- Oro, Luz
+(1, 3, 400.0, 700.0),     -- Oro, Particulas de CO2
 
 (2, 1, 0.0, 50.0),        -- Plata, Temperatura
 (2, 2, 0.0, 10000.0),     -- Plata, Luz
@@ -449,7 +449,7 @@ INSERT INTO MATERIAL_RANGE(MATERIAL_ID, VARIABLE_ID, MIN_RANGE, MAX_RANGE) VALUE
 (8, 3, 300.0, 1000.0),    -- Vidrio, Particulas de CO2
 
 (9, 1, 0.0, 50.0),        -- Cerámica, Temperatura
-(9, 2, 0.0, 10000.0),     -- Cerámica, Luz
+(9, 2, 0.0, 900.0),     -- Cerámica, Luz
 (9, 3, 300.0, 700.0),     -- Cerámica, Particulas de CO2
 
 (10, 1, 0.0, 50.0),       -- Cemento, Temperatura
@@ -466,25 +466,39 @@ VALUES (1, 'Datalogger Ambiental Foyer Norte', '2BA_Bs_DaA', 'PLDA-05AD-A', 'TNC
     (4, 'Datalogger de Iluminación Primer Piso', '1BA_Bs_DaI', 'PLDA-05AD-D', 'TNCR-4', 1, 2, 1);
 
 INSERT INTO INSTRUMENT_VARIABLE(VARIABLE_ID, INSTRUMENT_ID) VALUES (1, 1), (3, 1), (2, 2), (1, 3),(3, 3), (2, 4);
-=======
-INSERT INTO VARIABLE(NAME, CODE, UNIT)
-VALUES 
-("Humedad","1","%"),
-("Temperatura","2","°C"),
-("Iluminación Incidente","3","Lux/Luxes"),
-("Dióxido de carbono","4","CO2");
 
-INSERT INTO MATERIAL(NAME, CODE)
-VALUES
-("Barro","1"),
-("Estuco","2"),
-("Yeso","3"),
-("Oro","4"),
-("Madera","5"),
-("Acero","6");
+INSERT INTO ALARM_STATUS(ID, VALUE) VALUES (1, 'ACTIVE'), (2, 'CHECKED');
 
-INSERT INTO INSTRUMENT_TYPE(TYPE)
-VALUES
-("Estático"),
-("Móvil");
->>>>>>> e488c9f32bc2f0feed8eb39be26f6c5a8c6778d1
+INSERT INTO ALARM(ID, VARIABLE_ID, STATUS_ID, INSTRUMENT_ID, RAISED_DATE, REASON_OF_RAISE, AVG_VALUE, VARIANCE_VALUE, MAX_VALUE, MIN_VALUE, FROM_DATE, TO_DATE)
+VALUES (1, 1, 1, 1, '2024-06-15T18:41:51.706Z', 'El valor de la temperatura para el material Yeso excedió el rango permitido', 32.0, 4.6, 34.0, 22.0, '2024-06-15T16:41:51.706Z', '2024-06-15T18:41:51.706Z'),
+       (2, 2, 2, 4, '2024-06-14T16:32:51.706Z', 'El valor de la luz para el materia cerámica excedió el rango permitido', 800.0, 120.0, 951.2, 102.0, '2024-06-14T10:32:51.706Z', '2024-06-14T16:32:51.706Z');
+
+INSERT INTO WOUND(ID, NAME, CODE)
+VALUES (1, 'Fisuras', 'Le_Fi'),
+       (2, 'Alteraciones cromáticas', 'Le_AlCr'),
+       (3, 'Deshidratación', 'Le_De'),
+       (4, 'Corrosión', 'Le_Co'),
+       (5, 'Eflorescencias', 'Le_Ef'),
+       (6, 'Grietas', 'Le_Gr'),
+       (7, 'Desintegración del material', 'Le_DeMa');
+
+# Materiales
+(1, 'Oro', 'Ma_Or'),
+(2, 'Plata', 'Ma_Plat'),
+(3, 'Madera', 'Ma_Ma'),
+(4, 'Acero', 'Ma_Ac'),
+(5, 'Yeso', 'Ma_Ye'),
+(6, 'Plástico', 'Ma_Plas'),
+(7, 'Cobre', 'Ma_Co'),
+(8, 'Vidrio', 'Ma_Vi'),
+(9, 'Cerámica', 'Ma_Ce'),
+(10, 'Cemento', 'Ma_Cem');
+# Variables
+(1, 'Temperatura', 'Var_Te', 'C°'),
+(2, 'Luz', 'Var_Lu', 'Luxes'),
+(3, 'Particulas de CO2', 'Var_C02', 'µg/m3');
+(4, 'Humedad', 'Var_Hu', '%')
+
+INSERT INTO WOUND_MATERIAL(WOUND_ID, MATERIAL_ID, VARIABLE_ID)
+VALUES (1, 5, 1)
+
