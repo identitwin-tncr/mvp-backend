@@ -1,4 +1,4 @@
-import {Catalog, ElementType, Orientation} from "./Catalog"
+import {Block, Catalog, ElementType, Orientation} from "./Catalog"
 import {WoundElement} from "./Wound";
 
 export type ElementBody = {
@@ -25,6 +25,7 @@ export type ElementDatabase = {
     BLOCK_ID: number;
     BLOCK: string;
     BLOCK_CODE: string;
+    BLOCK_FLOOR: number;
 }
 
 
@@ -40,7 +41,7 @@ export type Element = {
         value: string;
         technologicalUnit: Catalog;
     },
-    block: Catalog | Catalog[]
+    block: Catalog | Catalog[] | Block
     alarms?: any[];
 }
 

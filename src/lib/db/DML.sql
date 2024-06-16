@@ -14,6 +14,27 @@ INSERT INTO MONITORING_FREQUENCY(FREQUENCY, SCHEDULE)
            ('Cada 12 horas', '0 */12 * * * *'),
            ('Cada día', '0 12 * * * *');
 
+# Materiales
+INSERT INTO MATERIAL(ID,NAME,CODE)
+VALUES
+(1, 'Oro', 'Ma_Or'),
+(2, 'Plata', 'Ma_Plat'),
+(3, 'Madera', 'Ma_Ma'),
+(4, 'Acero', 'Ma_Ac'),
+(5, 'Yeso', 'Ma_Ye'),
+(6, 'Plástico', 'Ma_Plas'),
+(7, 'Cobre', 'Ma_Co'),
+(8, 'Vidrio', 'Ma_Vi'),
+(9, 'Cerámica', 'Ma_Ce'),
+(10, 'Cemento', 'Ma_Cem');
+# Variables
+
+INSERT INTO VARIABLE(ID,NAME,CODE,UNIT)
+VALUES
+(1, 'Temperatura', 'Var_Te', 'C°'),
+(2, 'Luz', 'Var_Lu', 'Luxes'),
+(3, 'Particulas de CO2', 'Var_C02', 'µg/m3'),
+(4, 'Humedad', 'Var_Hu', '%');
 
 INSERT INTO BLOCK(ID, CODE, NAME, FLOOR) VALUES ('1', '2BA', 'Foyer norte (FN)', '2'),
 ('2', '1BA', 'Primer piso ', '1');
@@ -265,18 +286,6 @@ INSERT INTO BLOCK_ELEMENT(ELEMENT_ID, BLOCK_ID) VALUES ('1', '2'),
 ('96', '2'),
 ('97', '2');
 
-INSERT INTO MATERIAL(ID, NAME, CODE) VALUES
-(1, 'Oro', 'Ma_Or'),
-(2, 'Plata', 'Ma_Plat'),
-(3, 'Madera', 'Ma_Ma'),
-(4, 'Acero', 'Ma_Ac'),
-(5, 'Yeso', 'Ma_Ye'),
-(6, 'Plástico', 'Ma_Plas'),
-(7, 'Cobre', 'Ma_Co'),
-(8, 'Vidrio', 'Ma_Vi'),
-(9, 'Cerámica', 'Ma_Ce'),
-(10, 'Cemento', 'Ma_Cem');
-
 
 INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (1, 3, '');
 INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (1, 7, '');
@@ -410,11 +419,6 @@ INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (96, 1, ''
 INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (97, 4, '');
 INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (97, 8, '');
 
-INSERT INTO TNCR.VARIABLE(ID, NAME, CODE, UNIT) VALUES (1, 'Temperatura', 'Var_Te', 'C°'),
-(2, 'Luz', 'Var_Lu', 'Luxes'),
-(3, 'Particulas de CO2', 'Var_C02', 'µg/m3'),
-(4, 'Humedad', 'Var_Hu', '%');
-
 INSERT INTO MATERIAL_RANGE(MATERIAL_ID, VARIABLE_ID, MIN_RANGE, MAX_RANGE) VALUES
 (1, 1, 0.0, 50.0),        -- Oro, Temperatura
 (1, 2, 0.0, 925.0),     -- Oro, Luz
@@ -482,22 +486,6 @@ VALUES (1, 'Fisuras', 'Le_Fi'),
        (6, 'Grietas', 'Le_Gr'),
        (7, 'Desintegración del material', 'Le_DeMa');
 
-# Materiales
-(1, 'Oro', 'Ma_Or'),
-(2, 'Plata', 'Ma_Plat'),
-(3, 'Madera', 'Ma_Ma'),
-(4, 'Acero', 'Ma_Ac'),
-(5, 'Yeso', 'Ma_Ye'),
-(6, 'Plástico', 'Ma_Plas'),
-(7, 'Cobre', 'Ma_Co'),
-(8, 'Vidrio', 'Ma_Vi'),
-(9, 'Cerámica', 'Ma_Ce'),
-(10, 'Cemento', 'Ma_Cem');
-# Variables
-(1, 'Temperatura', 'Var_Te', 'C°'),
-(2, 'Luz', 'Var_Lu', 'Luxes'),
-(3, 'Particulas de CO2', 'Var_C02', 'µg/m3');
-(4, 'Humedad', 'Var_Hu', '%')
 
 INSERT INTO WOUND_MATERIAL(WOUND_ID, MATERIAL_ID, VARIABLE_ID)
 VALUES (1, 5, 1)

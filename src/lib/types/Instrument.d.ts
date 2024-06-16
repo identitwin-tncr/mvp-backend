@@ -36,7 +36,7 @@ export type InstrumentItem =
     code: string
     model: string,
     assetCode: string,
-    monitoringFrecuency: MonitoringFrecuency,
+    monitoringFrequency: MonitoringFrecuency,
     block: Block,
     instrumentType: InstrumentType
 }

@@ -14,7 +14,6 @@ const retrieveInstrumentList = async (req: express.Request, res: express.Respons
     const offset: number = req.query.offset ? parseInt(req.query.offset as string) : DEFAULT_OFFSET;
     const limit: number = req.query.limit ? parseInt(req.query.limit as string) : DEFAULT_LIMIT;
     const blockId: number = req.query.blockId ? parseInt(req.query.blockId as string) : null;
-    console.log(blockId)
     _retrieveInstrumentList(offset, limit+1,blockId)
     .then(result => {
         const items = result[0][0] as InstrumentDatabase[];

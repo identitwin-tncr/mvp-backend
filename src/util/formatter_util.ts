@@ -45,7 +45,9 @@ const formatElement = (element: ElementDatabase) : Element => {
         block: {
             id: element.BLOCK_ID,
             value: element.BLOCK,
-            code: element.BLOCK_CODE
+            code: element.BLOCK_CODE,
+            floor: element.BLOCK_FLOOR
+
         }
     }
 }
@@ -113,14 +115,13 @@ const formatBlock = (item: BlockDatabase): Block => {
 }
 
 const formatInstrument = (item: InstrumentDatabase): InstrumentItem => {
-    console.log(item)
     return {
         id: item.INSTRUMENT_ID,
         value: item.INSTRUMENT_NAME,
         code: item.INSTRUMENT_CODE,
         model: item.INSTRUMENT_MODEL,
         assetCode: item.INSTRUMENT_ASSET_CODE,
-        monitoringFrecuency: {
+        monitoringFrequency: {
             id: item.MONITORING_FREQUENCY_ID,
             value: item.MONITORING_FREQUENCY_NAME
         } as MonitoringFrecuency,
