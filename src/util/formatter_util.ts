@@ -1,4 +1,18 @@
-import {ElementDatabase, Element, MonitoringVariableDatabase, MonitoringVariable, Catalog, CatalogDatabase, BlockDatabase, Block, ElementTypeDatabase, ElementType} from "types";
+import {
+    ElementDatabase,
+    Element,
+    MonitoringVariableDatabase,
+    MonitoringVariable,
+    Catalog,
+    CatalogDatabase,
+    BlockDatabase,
+    Block,
+    ElementTypeDatabase,
+    ElementType,
+    MonitoringFrecuency,
+    InstrumentType,
+    InstrumentDatabase, InstrumentItem
+} from "types";
 
 
 const formatElement = (element: ElementDatabase) : Element => {
@@ -92,6 +106,30 @@ const formatBlock = (item: BlockDatabase): Block => {
     }
 }
 
+const formatInstrument = (item: InstrumentDatabase): InstrumentItem => {
+    console.log(item)
+    return {
+        id: item.INSTRUMENT_ID,
+        value: item.INSTRUMENT_NAME,
+        code: item.INSTRUMENT_CODE,
+        model: item.INSTRUMENT_MODEL,
+        assetCode: item.INSTRUMENT_ASSET_CODE,
+        monitoringFrecuency: {
+            id: item.MONITORING_FREQUENCY_ID,
+            value: item.MONITORING_FREQUENCY_NAME
+        } as MonitoringFrecuency,
+        block:{
+            id: item.BLOCK_ID,
+            value: item.BLOCK_NAME
+        } as Block,
+        instrumentType: {
+            id: item.INSTRUMENT_TYPE_ID,
+            value: item.INSTRUMENT_TYPE_NAME
+        } as InstrumentType
+
+    } as InstrumentItem
+}
+
 export {
     formatElement,
     formatPagination,
@@ -99,5 +137,6 @@ export {
     formatVariable,
     formatCatalog,
     formatBlock,
-    formatElementType
+    formatElementType,
+    formatInstrument
 }

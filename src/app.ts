@@ -2,7 +2,6 @@ import express from 'express';
 import cors from 'cors';
 import session from 'express-session';
 
-import userRouter from './lib/routes/user_routes';
 import unprotectedRouter from './lib/routes/unprotected_routes';
 import catalogRouter from './lib/routes/catalog_routes';
 import elementRouter from './lib/routes/elements_routes';
@@ -40,7 +39,6 @@ app.use(
  */
 
 app.use(unprotectedRouter);
-app.use('/users', userRouter);
 app.use('/catalog', catalogRouter); //Monitoring variables, Materials
 app.use('/elements', elementRouter); //structural, decorative
 app.use('/instruments', instrumentRouter); //Datalogger, others.
