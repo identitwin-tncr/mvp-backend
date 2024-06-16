@@ -5,6 +5,14 @@ export type Wound =
     code: string
 }
 
-export type WoundElement = {
+export type AffectedVariable = {
+    value: string;
+    affected: boolean;
+}
 
+export type WoundElement = {
+    value: string;
+    material: string;
+    maxRange: AffectedVariable;
+    minRange: AffectedVariable;
 }

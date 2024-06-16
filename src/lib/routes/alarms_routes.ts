@@ -1,4 +1,8 @@
-import { retrieveAlarmActionList, retrieveAlarmList} from "../controllers/alarms_controller";
+import {
+    retrieveAlarmDetail,
+    retrieveAlarmDetailElements,
+    retrieveAlarmList
+} from "../controllers/alarms_controller";
 
 const router = require('express').Router();
 
@@ -9,15 +13,8 @@ const router = require('express').Router();
  */
 
 router.get('/', retrieveAlarmList)
-router.get('/actions', retrieveAlarmActionList) //check a specific alarm actions
-
-/*
- ******************************************************
- **************** ROUTE POST REQUESTS  ****************
- ******************************************************
- */
-
-router.post('/')
+router.get('/:id', retrieveAlarmDetail)
+router.get('/elements/:id', retrieveAlarmDetailElements)
 
 /*
  *****************************************************
@@ -25,14 +22,7 @@ router.post('/')
  *****************************************************
  */
 
-router.put('/:id')
+router.put('/check/:id')
 
-/*
- ********************************************************
- **************** ROUTE DELETE REQUESTS  ****************
- ********************************************************
- */
-
-router.delete('/:id')
 
 export default router;

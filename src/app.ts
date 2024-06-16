@@ -42,7 +42,7 @@ app.use(unprotectedRouter);
 app.use('/catalog', catalogRouter); //Monitoring variables, Materials
 app.use('/elements', elementRouter); //structural, decorative
 app.use('/instruments', instrumentRouter); //Datalogger, others.
-app.use('/alarm', alarmRouter); //alarm historial
+app.use('/alarms', alarmRouter); //alarm historial
 app.use('/conservationAccion', conservationActionRouter); //Conservation actions associated to elements, material and rank
 app.use('/wound', woundRouter);
 

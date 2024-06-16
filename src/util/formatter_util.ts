@@ -11,7 +11,13 @@ import {
     ElementType,
     MonitoringFrecuency,
     InstrumentType,
-    InstrumentDatabase, InstrumentItem
+    InstrumentDatabase,
+    InstrumentItem,
+    AlarmItemDatabase,
+    Alarm,
+    AlarmDetailDatabase,
+    ElementAlarmDatabase,
+    ElementAlarm, AffectedVariable
 } from "types";
 
 
@@ -130,6 +136,99 @@ const formatInstrument = (item: InstrumentDatabase): InstrumentItem => {
     } as InstrumentItem
 }
 
+const formatAlarmItem = (alarm: AlarmItemDatabase): Alarm => {
+    return {
+        id: alarm.ID,
+        raisedDate: alarm.RAISED_DATE,
+        status: alarm.STATUS,
+        variable: {
+            value: alarm.VARIABLE,
+            unit: alarm.VARIABLE_UNIT
+        },
+        instrument: alarm.INSTRUMENT,
+        minValue: alarm.MIN_VALUE,
+        maxValue: alarm.MAX_VALUE,
+        block: {
+            value: alarm.BLOCK
+        }
+    }
+}
+
+const formatAlarmDetail = (alarm: AlarmDetailDatabase): Alarm => {
+    return {
+        id: alarm.ID,
+        raisedDate: alarm.RAISED_DATE,
+        status: alarm.STATUS,
+        variable: {
+            value: alarm.VARIABLE,
+            unit: alarm.VARIABLE_UNIT
+        },
+        instrument: alarm.INSTRUMENT,
+        minValue: alarm.MIN_VALUE,
+        maxValue: alarm.MAX_VALUE,
+        block: {
+            value: alarm.BLOCK,
+            code: alarm.BLOCK_CODE
+        },
+        from: alarm.FROM_DATE,
+        to: alarm.TO_DATE
+    }
+}
+
+const formatElementAlarm = (elements: ElementAlarmDatabase[]): ElementAlarm[] => {
+    let currentElementId = -1;
+    let parsedElements: ElementAlarm[] = []
+
+    elements.forEach((element: ElementAlarmDatabase) => {
+        if(element.ID === currentElementId){
+            parsedElements[parsedElements.length - 1].wounds.push({
+                value: element.WOUND,
+                material: element.MATERIAL,
+                maxRange: {
+                    value: element.MAX_RANGE.toString(10) + " " + element.UNIT,
+                    affected: Boolean(element.MAX_AFFECTED)
+                },
+                minRange:{
+                    value: element.MIN_RANGE.toString(10) + " " + element.UNIT,
+                    affected: Boolean(element.MIN_AFFECTED)
+                },
+            })
+        }else{
+            parsedElements.push({
+                id: element.ID,
+                code: element.CODE,
+                number: element.NUMBER,
+                orientation: {
+                    value: element.ORIENTATION
+                },
+                cardinalPoint: {
+                    value: element.CARDINAL_POINT
+                },
+                elementType: {
+                    value: element.ELEMENT_TYPE,
+                    technologicalUnit: {
+                        value: element.TECHNOLOGICAL_UNIT
+                    }
+                },
+                wounds: [{
+                    value: element.WOUND? element.WOUND : "Lesión",
+                    material: element.MATERIAL,
+                    maxRange: {
+                        value: element.MAX_RANGE.toString(10) + element.UNIT,
+                        affected: Boolean(element.MAX_AFFECTED)
+                    },
+                    minRange: {
+                        value: element.MIN_RANGE.toString(10) + element.UNIT,
+                        affected: Boolean(element.MIN_AFFECTED)
+                    }
+                }]
+            })
+        }
+    })
+
+    return parsedElements;
+}
+
 export {
     formatElement,
     formatPagination,
@@ -138,5 +237,8 @@ export {
     formatCatalog,
     formatBlock,
     formatElementType,
-    formatInstrument
+    formatInstrument,
+    formatAlarmItem,
+    formatAlarmDetail,
+    formatElementAlarm
 }

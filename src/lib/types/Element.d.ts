@@ -1,4 +1,5 @@
 import {Catalog, ElementType, Orientation} from "./Catalog"
+import {WoundElement} from "./Wound";
 
 export type ElementBody = {
     code: string;
@@ -54,7 +55,22 @@ export type ElementAlarm = {
         value: string;
         technologicalUnit: Catalog;
     },
-    block?: Catalog | Catalog[]
-    alarms?: any[];
     wounds?: WoundElement[]
+}
+
+export type ElementAlarmDatabase = {
+    ID: number;
+    CODE: string;
+    NUMBER: number;
+    ORIENTATION: string;
+    CARDINAL_POINT: string;
+    ELEMENT_TYPE: string;
+    TECHNOLOGICAL_UNIT: string;
+    MATERIAL: string;
+    MIN_RANGE: number;
+    MIN_AFFECTED: number;
+    MAX_AFFECTED: number;
+    MAX_RANGE: number;
+    UNIT: string;
+    WOUND: string;
 }
