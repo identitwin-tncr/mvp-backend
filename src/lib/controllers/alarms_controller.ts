@@ -62,6 +62,10 @@ const retrieveAlarmDetailElements = async (req: express.Request, res: express.Re
         })
 }
 
+const scheduleAlarms = () => {
+
+}
+
 
 export {
     retrieveAlarmList,

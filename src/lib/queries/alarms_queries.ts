@@ -15,6 +15,8 @@ const _retrieveAlarmElements = (id: number): Promise<[RowDataPacket[], FieldPack
     return pool.query(query, [id])
 }
 
+const _insertAlarm = (data: InsertAlarm)
+
 
 export {
     _retrieveAlarmList,
