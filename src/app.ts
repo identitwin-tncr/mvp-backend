@@ -9,6 +9,7 @@ import instrumentRouter from './lib/routes/instruments_routes';
 import alarmRouter from './lib/routes/alarms_routes';
 import conservationActionRouter from './lib/routes/conservation_actions_routes';
 import woundRouter from './lib/routes/wound_routes'
+import {scheduleAlarms} from "./lib/controllers/alarms_controller";
 
 /**
  * Import environmental variables
@@ -33,6 +34,7 @@ app.use(
         saveUninitialized: false,
     }),
 );
+scheduleAlarms();
 
 /**
  * App routes

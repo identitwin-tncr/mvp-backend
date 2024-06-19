@@ -15,6 +15,26 @@ INSERT INTO MONITORING_FREQUENCY(FREQUENCY, SCHEDULE)
            ('Cada día', '0 12 * * * *');
 
 
+INSERT INTO MATERIAL(ID,NAME,CODE)
+VALUES
+(1, 'Oro', 'Ma_Or'),
+(2, 'Plata', 'Ma_Plat'),
+(3, 'Madera', 'Ma_Ma'),
+(4, 'Acero', 'Ma_Ac'),
+(5, 'Yeso', 'Ma_Ye'),
+(6, 'Plástico', 'Ma_Plas'),
+(7, 'Cobre', 'Ma_Co'),
+(8, 'Vidrio', 'Ma_Vi'),
+(9, 'Cerámica', 'Ma_Ce'),
+(10, 'Cemento', 'Ma_Cem');
+
+INSERT INTO VARIABLE(ID,NAME,CODE,UNIT)
+VALUES
+(1, 'Temperatura', 'Var_Te', 'C°'),
+(2, 'Luz', 'Var_Lu', 'Luxes'),
+(3, 'Particulas de CO2', 'Var_C02', 'µg/m3'),
+(4, 'Humedad', 'Var_Hu', '%');
+
 INSERT INTO BLOCK(ID, CODE, NAME, FLOOR) VALUES ('1', '2BA', 'Foyer norte (FN)', '2'),
 ('2', '1BA', 'Primer piso ', '1');
 
@@ -265,18 +285,6 @@ INSERT INTO BLOCK_ELEMENT(ELEMENT_ID, BLOCK_ID) VALUES ('1', '2'),
 ('96', '2'),
 ('97', '2');
 
-INSERT INTO MATERIAL(ID, NAME, CODE) VALUES
-(1, 'Oro', 'Ma_Or'),
-(2, 'Plata', 'Ma_Plat'),
-(3, 'Madera', 'Ma_Ma'),
-(4, 'Acero', 'Ma_Ac'),
-(5, 'Yeso', 'Ma_Ye'),
-(6, 'Plástico', 'Ma_Plas'),
-(7, 'Cobre', 'Ma_Co'),
-(8, 'Vidrio', 'Ma_Vi'),
-(9, 'Cerámica', 'Ma_Ce'),
-(10, 'Cemento', 'Ma_Cem');
-
 
 INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (1, 3, '');
 INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (1, 7, '');
@@ -410,11 +418,6 @@ INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (96, 1, ''
 INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (97, 4, '');
 INSERT INTO ELEMENT_MATERIAL(ELEMENT_ID, MATERIAL_ID, REMARKS) VALUES (97, 8, '');
 
-INSERT INTO TNCR.VARIABLE(ID, NAME, CODE, UNIT) VALUES (1, 'Temperatura', 'Var_Te', 'C°'),
-(2, 'Luz', 'Var_Lu', 'Luxes'),
-(3, 'Particulas de CO2', 'Var_C02', 'µg/m3'),
-(4, 'Humedad', 'Var_Hu', '%');
-
 INSERT INTO MATERIAL_RANGE(MATERIAL_ID, VARIABLE_ID, MIN_RANGE, MAX_RANGE) VALUES
 (1, 1, 0.0, 50.0),        -- Oro, Temperatura
 (1, 2, 0.0, 925.0),     -- Oro, Luz
@@ -471,7 +474,8 @@ INSERT INTO ALARM_STATUS(ID, VALUE) VALUES (1, 'ACTIVE'), (2, 'CHECKED');
 
 INSERT INTO ALARM(ID, VARIABLE_ID, STATUS_ID, INSTRUMENT_ID, RAISED_DATE, REASON_OF_RAISE, AVG_VALUE, VARIANCE_VALUE, MAX_VALUE, MIN_VALUE, FROM_DATE, TO_DATE)
 VALUES (1, 1, 1, 1, '2024-06-15T18:41:51.706Z', 'El valor de la temperatura para el material Yeso excedió el rango permitido', 32.0, 4.6, 34.0, 22.0, '2024-06-15T16:41:51.706Z', '2024-06-15T18:41:51.706Z'),
-       (2, 2, 2, 4, '2024-06-14T16:32:51.706Z', 'El valor de la luz para el materia cerámica excedió el rango permitido', 800.0, 120.0, 951.2, 102.0, '2024-06-14T10:32:51.706Z', '2024-06-14T16:32:51.706Z');
+       (2, 2, 2, 4, '2024-06-14T16:32:51.706Z', 'El valor de la luz para el material cerámica excedió el rango permitido', 800.0, 120.0, 951.2, 102.0, '2024-06-14T10:32:51.706Z', '2024-06-14T16:32:51.706Z');
+
 
 INSERT INTO WOUND(ID, NAME, CODE)
 VALUES (1, 'Fisuras', 'Le_Fi'),
@@ -482,22 +486,74 @@ VALUES (1, 'Fisuras', 'Le_Fi'),
        (6, 'Grietas', 'Le_Gr'),
        (7, 'Desintegración del material', 'Le_DeMa');
 
-# Materiales
-(1, 'Oro', 'Ma_Or'),
-(2, 'Plata', 'Ma_Plat'),
-(3, 'Madera', 'Ma_Ma'),
-(4, 'Acero', 'Ma_Ac'),
-(5, 'Yeso', 'Ma_Ye'),
-(6, 'Plástico', 'Ma_Plas'),
-(7, 'Cobre', 'Ma_Co'),
-(8, 'Vidrio', 'Ma_Vi'),
-(9, 'Cerámica', 'Ma_Ce'),
-(10, 'Cemento', 'Ma_Cem');
-# Variables
-(1, 'Temperatura', 'Var_Te', 'C°'),
-(2, 'Luz', 'Var_Lu', 'Luxes'),
-(3, 'Particulas de CO2', 'Var_C02', 'µg/m3');
-(4, 'Humedad', 'Var_Hu', '%')
-
 INSERT INTO WOUND_MATERIAL(WOUND_ID, MATERIAL_ID, VARIABLE_ID)
-VALUES (1, 5, 1)
+VALUES
+(1, 5, 1), -- Fisuras, Yeso, Temperatura
+(1, 5, 4), -- Fisuras, Yeso, Humedad
+(1, 10, 1), -- Fisuras, Cemento, Temperatura
+(1, 10, 4), -- Fisuras, Cemento, Humedad
+(1, 9, 1), -- Fisuras, Cerámica, Temperatura
+(1, 9, 4), -- Fisuras, Cerámica, Humedad
+(1, 8, 1), -- Fisuras, Vidrio, Temperatura
+(1, 8, 4), -- Fisuras, Vidrio, Humedad
+(1, 3, 1), -- Fisuras, Madera, Temperatura
+(1, 3, 4), -- Fisuras, Madera, Humedad
+(2, 3, 2), -- Alteraciones cromáticas, Madera, Luz
+(2, 3, 3), -- Alteraciones cromáticas, Madera, CO2
+(2, 5, 2), -- Alteraciones cromáticas, Yeso, Luz
+(2, 5, 3), -- Alteraciones cromáticas, Yeso, CO2
+(2, 10, 2), -- Alteraciones cromáticas, Cemento, Luz
+(2, 10, 3), -- Alteraciones cromáticas, Cemento, CO2
+(2, 6, 2), -- Alteraciones cromáticas, Plástico, Luz
+(2, 6, 3), -- Alteraciones cromáticas, Plástico, CO2
+(2, 9, 2), -- Alteraciones cromáticas, Cerámica, Luz
+(2, 9, 3), -- Alteraciones cromáticas, Cerámica, CO2
+(2, 1, 2), -- Alteraciones cromáticas, Oro, Luz
+(2, 1, 3), -- Alteraciones cromáticas, Oro, CO2
+(3, 3, 1), -- Deshidratación, Madera, Temperatura
+(3, 3, 4), -- Deshidratación, Madera, Humedad
+(3, 3, 2), -- Deshidratación, Madera, Luz
+(3, 5, 1), -- Deshidratación, Yeso, Temperatura
+(3, 5, 4), -- Deshidratación, Yeso, Humedad
+(3, 5, 2), -- Deshidratación, Yeso, Luz
+(3, 10, 1), -- Deshidratación, Cemento, Temperatura
+(3, 10, 4), -- Deshidratación, Cemento, Humedad
+(3, 10, 2), -- Deshidratación, Cemento, Luz
+(4, 4, 4), -- Corrosión, Acero, Humedad
+(4, 4, 3), -- Corrosión, Acero, CO2
+(4, 7, 4), -- Corrosión, Cobre, Humedad
+(4, 7, 3), -- Corrosión, Cobre, CO2
+(4, 2, 4), -- Corrosión, Plata, Humedad
+(4, 2, 3), -- Corrosión, Plata, CO2
+(4, 1, 4), -- Corrosión, Oro, Humedad
+(4, 1, 3), -- Corrosión, Oro, CO2
+(5, 10, 4), -- Eflorescencias, Cemento, Humedad
+(5, 9, 4), -- Eflorescencias, Cerámica, Humedad
+(5, 5, 4), -- Eflorescencias, Yeso, Humedad
+(5, 3, 4), -- Eflorescencias, Madera, Humedad
+(6, 5, 1), -- Grietas, Yeso, Temperatura
+(6, 5, 4), -- Grietas, Yeso, Humedad
+(6, 10, 1), -- Grietas, Cemento, Temperatura
+(6, 10, 4), -- Grietas, Cemento, Humedad
+(6, 9, 1), -- Grietas, Cerámica, Temperatura
+(6, 9, 4), -- Grietas, Cerámica, Humedad
+(6, 8, 1), -- Grietas, Vidrio, Temperatura
+(6, 8, 4), -- Grietas, Vidrio, Humedad
+(6, 3, 1), -- Grietas, Madera, Temperatura
+(6, 3, 4), -- Grietas, Madera, Humedad
+(7, 5, 4), -- Desintegración del material, Yeso, Humedad
+(7, 5, 2), -- Desintegración del material, Yeso, Luz
+(7, 5, 1), -- Desintegración del material, Yeso, Temperatura
+(7, 10, 4), -- Desintegración del material, Cemento, Humedad
+(7, 10, 2), -- Desintegración del material, Cemento, Luz
+(7, 10, 1), -- Desintegración del material, Cemento, Temperatura
+(7, 3, 4), -- Desintegración del material, Madera, Humedad
+(7, 3, 2), -- Desintegración del material, Madera, Luz
+(7, 3, 1), -- Desintegración del material, Madera, Temperatura
+(7, 6, 4), -- Desintegración del material, Plástico, Humedad
+(7, 6, 2), -- Desintegración del material, Plástico, Luz
+(7, 6, 1), -- Desintegración del material, Plástico, Temperatura
+(7, 9, 4), -- Desintegración del material, Cerámica, Humedad
+(7, 9, 2), -- Desintegración del material, Cerámica, Luz
+(7, 9, 1); -- Desintegración del material, Cerámica, Temperatura
+

@@ -45,7 +45,9 @@ const formatElement = (element: ElementDatabase) : Element => {
         block: {
             id: element.BLOCK_ID,
             value: element.BLOCK,
-            code: element.BLOCK_CODE
+            code: element.BLOCK_CODE,
+            floor: element.BLOCK_FLOOR
+
         }
     }
 }
@@ -113,14 +115,13 @@ const formatBlock = (item: BlockDatabase): Block => {
 }
 
 const formatInstrument = (item: InstrumentDatabase): InstrumentItem => {
-    console.log(item)
     return {
         id: item.INSTRUMENT_ID,
         value: item.INSTRUMENT_NAME,
         code: item.INSTRUMENT_CODE,
         model: item.INSTRUMENT_MODEL,
         assetCode: item.INSTRUMENT_ASSET_CODE,
-        monitoringFrecuency: {
+        monitoringFrequency: {
             id: item.MONITORING_FREQUENCY_ID,
             value: item.MONITORING_FREQUENCY_NAME
         } as MonitoringFrecuency,
@@ -194,32 +195,11 @@ const formatElementAlarm = (elements: ElementAlarmDatabase[]): ElementAlarm[] =>
                 },
             })
         }else{
+            currentElementId = element.ID;
             parsedElements.push({
                 id: element.ID,
                 code: element.CODE,
-                number: element.NUMBER,DROP PROCEDURE IF EXISTS RETRIEVE_ALARM_ELEMENTS;
-CREATE PROCEDURE RETRIEVE_ALARM_ELEMENTS(
-    IN P_IN_ALARM_ID INT
-) BEGIN
-    SELECT E.ID, E.CODE, ET.NAME ELEMENT_TYPE, TU.NAME TECHNOLOGICAL_UNIT, E.NUMBER, CP.NAME CARDINAL_POINT, O.NAME ORIENTATION, M.NAME MATERIAL, MR.MIN_RANGE, MR.MAX_RANGE, V.UNIT, W.NAME WOUND, MR.MIN_RANGE >= A.MIN_VALUE MIN_AFFECTED, MR.MAX_RANGE <= A.MAX_VALUE MAX_AFFECTED
-    FROM ELEMENT E
-        INNER JOIN ELEMENT_MATERIAL EM on E.ID = EM.ELEMENT_ID
-        INNER JOIN MATERIAL M on EM.MATERIAL_ID = M.ID
-        INNER JOIN MATERIAL_RANGE MR on M.ID = MR.MATERIAL_ID
-        INNER JOIN VARIABLE V on MR.VARIABLE_ID = V.ID
-        INNER JOIN BLOCK_ELEMENT BE on E.ID = BE.ELEMENT_ID
-        INNER JOIN BLOCK B on BE.BLOCK_ID = B.ID
-        INNER JOIN INSTRUMENT I on B.ID = I.BLOCK_ID
-        INNER JOIN (SELECT * FROM ALARM WHERE ID = P_IN_ALARM_ID) A ON I.ID = A.INSTRUMENT_ID AND A.VARIABLE_ID = V.ID
-        LEFT JOIN WOUND_MATERIAL WM on M.ID = WM.MATERIAL_ID
-        LEFT JOIN WOUND W ON WM.WOUND_ID = W.ID
-        INNER JOIN ELEMENT_TYPE ET on E.ELEMENT_TYPE_ID = ET.ID
-        INNER JOIN TECHNICAL_UNIT TU on ET.TECHNICAL_UNIT_ID = TU.ID
-        LEFT JOIN CARDINAL_POINT CP on E.CARDINAL_POINT_ID = CP.ID
-        LEFT JOIN ORIENTATION O on E.ORIENTATION_ID = O.ID
-    WHERE MR.MIN_RANGE >= A.MIN_VALUE OR MR.MAX_RANGE <= A.MAX_VALUE
-    ORDER BY E.ID;
-END;
+                number: element.NUMBER,
                 orientation: {
                     value: element.ORIENTATION
                 },
