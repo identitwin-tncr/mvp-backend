@@ -167,6 +167,8 @@ const formatAlarmDetail = (alarm: AlarmDetailDatabase): Alarm => {
         instrument: alarm.INSTRUMENT,
         minValue: alarm.MIN_VALUE,
         maxValue: alarm.MAX_VALUE,
+        averageValue: alarm.AVG_VALUE,
+        varianceValue: alarm.VARIANCE_VALUE,
         block: {
             value: alarm.BLOCK,
             code: alarm.BLOCK_CODE
