@@ -474,7 +474,8 @@ INSERT INTO ALARM_STATUS(ID, VALUE) VALUES (1, 'ACTIVE'), (2, 'CHECKED');
 
 INSERT INTO ALARM(ID, VARIABLE_ID, STATUS_ID, INSTRUMENT_ID, RAISED_DATE, REASON_OF_RAISE, AVG_VALUE, VARIANCE_VALUE, MAX_VALUE, MIN_VALUE, FROM_DATE, TO_DATE)
 VALUES (1, 1, 1, 1, '2024-06-15T18:41:51.706Z', 'El valor de la temperatura para el material Yeso excedió el rango permitido', 32.0, 4.6, 34.0, 22.0, '2024-06-15T16:41:51.706Z', '2024-06-15T18:41:51.706Z'),
-       (2, 2, 2, 4, '2024-06-14T16:32:51.706Z', 'El valor de la luz para el materia cerámica excedió el rango permitido', 800.0, 120.0, 951.2, 102.0, '2024-06-14T10:32:51.706Z', '2024-06-14T16:32:51.706Z');
+       (2, 2, 2, 4, '2024-06-14T16:32:51.706Z', 'El valor de la luz para el material cerámica excedió el rango permitido', 800.0, 120.0, 951.2, 102.0, '2024-06-14T10:32:51.706Z', '2024-06-14T16:32:51.706Z');
+
 
 INSERT INTO WOUND(ID, NAME, CODE)
 VALUES (1, 'Fisuras', 'Le_Fi'),

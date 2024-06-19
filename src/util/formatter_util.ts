@@ -197,6 +197,7 @@ const formatElementAlarm = (elements: ElementAlarmDatabase[]): ElementAlarm[] =>
                 },
             })
         }else{
+            currentElementId = element.ID;
             parsedElements.push({
                 id: element.ID,
                 code: element.CODE,

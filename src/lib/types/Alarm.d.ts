@@ -44,4 +44,8 @@ export type AlarmDetailDatabase = {
     STATUS: string;
 }
 
+export type InsertAlarm = {
+    variableId: number;
+    instrumentId: number;
 
+}

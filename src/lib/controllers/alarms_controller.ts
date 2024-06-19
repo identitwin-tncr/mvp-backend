@@ -1,6 +1,7 @@
 import express from 'express';
-import { DEFAULT_LIMIT, DEFAULT_OFFSET } from '../../util/common_utils';
+import {addAlarm, alarms, DEFAULT_LIMIT, DEFAULT_OFFSET} from '../../util/common_utils';
 import {
+    _insertAlarm,
     _retrieveAlarmDetail,
     _retrieveAlarmElements,
     _retrieveAlarmList
@@ -14,6 +15,8 @@ import {
     formatError,
     formatPagination
 } from "../../util/formatter_util";
+import alarmsData from "../static/alarms.json";
+import cron from "node-cron";
 
 const retrieveAlarmList = async (req: express.Request, res: express.Response) => {
     const offset: number = req.query.offset ? parseInt(req.query.offset as string) : DEFAULT_OFFSET;
@@ -63,8 +66,30 @@ const retrieveAlarmDetailElements = async (req: express.Request, res: express.Re
 }
 
 
+const insertAlarm = () => {
+    if(alarms < alarmsData.alarms.length){
+        const data = alarmsData.alarms[alarms];
+
+        _insertAlarm(data)
+            .catch(err => {
+                console.error(err);
+            });
+
+        addAlarm();
+    }
+}
+
+const scheduleAlarms = () => {
+    cron.schedule(
+        "0 */7 * * * *",
+        insertAlarm
+    )
+}
+
+
 export {
     retrieveAlarmList,
     retrieveAlarmDetail,
-    retrieveAlarmDetailElements
+    retrieveAlarmDetailElements,
+    scheduleAlarms
 }
